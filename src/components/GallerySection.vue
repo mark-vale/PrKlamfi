@@ -17,7 +17,7 @@
             :alt="g.alt"
             :height="Math.round(g.h * 0.7)"
             loading="lazy"
-            :src="photo(g.id, 700, Math.round(g.h * 0.7))"
+            :src="g.thumb"
             :width="700"
           >
         </button>
@@ -32,7 +32,7 @@
       @close="onClosed"
     >
       <template v-if="index > -1">
-        <img :alt="gallery[index].alt" :src="photo(gallery[index].id, 1800, gallery[index].h * 1.5, 85)">
+        <img :alt="gallery[index].alt" :src="gallery[index].full">
         <p class="count">{{ gallery[index].alt }}</p>
         <button aria-label="Zapri" class="lb-btn lb-close" type="button" @click="close">
           <AppIcon :path="mdiClose" />
@@ -52,7 +52,7 @@
   import { mdiChevronLeft, mdiChevronRight, mdiClose } from '@mdi/js'
   import { onBeforeUnmount, onMounted, ref } from 'vue'
   import AppIcon from '@/components/AppIcon.vue'
-  import { gallery, photo } from '@/content'
+  import { gallery } from '@/content'
   import { lockScroll } from '@/smooth-scroll'
 
   const dialogEl = ref(null)

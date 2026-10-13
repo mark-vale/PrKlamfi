@@ -166,20 +166,35 @@ export const menu = [
   },
 ]
 
+// Our own photos live in public/images/gallery as -700 (grid) and -1800 (lightbox) JPEGs
+function galleryPhoto (g, w, h, q) {
+  return g.local
+    ? `${import.meta.env.BASE_URL}images/gallery/${g.id}-${w > 1000 ? 1800 : 700}.jpg`
+    : photo(g.id, w, h, q)
+}
+
 export const gallery = [
   { id: '0db9e88569ea4730acb540d9f36cfa3d', alt: 'Poročna miza z rdečimi lističi', h: 1200 },
   { id: '8667ff5704a74031ae96c4688c3c588b', alt: 'Klop ob ribniku sredi gozda', h: 800 },
+  { id: 'foto-0004', local: true, alt: 'Mize pod senčnikom na travi ob gozdu', h: 667 },
   { id: '62cba277cff2489ea6411fc5ec6cf3b1', alt: 'Narezek s sirom in paradižnikom', h: 1000 },
   { id: '37bd1572055e47af932bdba9890eaa5f', alt: 'Pogrnjena miza ob kamniti steni', h: 800 },
+  { id: 'foto-0006', local: true, alt: 'Pot do ribnika in lesen paviljon', h: 667 },
   { id: '0925255acd494f11ae3fc62279719cec', alt: 'Kanapeji z namazi', h: 1100 },
   { id: '889e74dd2ee544f99743a3084f401f26', alt: 'Pokrit prostor z mizami', h: 800 },
   { id: 'a13df4d79bac4f71ba2859589371491b', alt: 'Kozarci za penino na dolgi mizi', h: 1200 },
+  { id: 'foto-0005', local: true, alt: 'Barski stoli ob pokritem šanku in mize na vrtu', h: 667 },
   { id: 'a63a1458ec20434c9383684ce74b6b76', alt: 'Pršut, zavit okoli grisinov', h: 800 },
   { id: '93903e8fe49446a7b78c2693ccac5805', alt: 'Poročne mize pod streho', h: 1000 },
   { id: '37108c4af42e4f85ba48f0bd1a5e4f97', alt: 'Postrežba narezka s klešči', h: 800 },
+  { id: 'foto-0030', local: true, alt: 'Pogled na piknik prostor s senčniki in paviljonom', h: 667 },
   { id: '36f9d190a7fd4c4b84ca359882d67f94', alt: 'Bogato obložena miza s pico in narezkom', h: 1100 },
   { id: '04014a1e3fb44f0aa40d213c6c39547b', alt: 'Sladice v kozarčkih', h: 800 },
-]
+].map(g => ({
+  ...g,
+  thumb: galleryPhoto(g, 700, Math.round(g.h * 0.7)),
+  full: galleryPhoto(g, 1800, g.h * 1.5, 85),
+}))
 
 export const about = {
   paragraphs: [
