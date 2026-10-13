@@ -12,6 +12,13 @@ Landing page for Piknik prostor Pr' Klamfi, Kolovec (Domžale). Built with Vue 3
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | Lint and auto-fix the code |
 
+## Deployment
+
+Every push to `main` builds the site and publishes it to GitHub Pages at
+https://mark-vale.github.io/PrKlamfi/ (workflow: `.github/workflows/deploy.yml`).
+Progress and logs are in the repo's **Actions** tab. A deploy can also be started
+by hand there with **Run workflow**.
+
 ## Where things live
 
 - `src/content.js`: all text, photos, menu items and contact details
