@@ -29,7 +29,7 @@
       aria-label="Galerija"
       class="lightbox"
       @click.self="close"
-      @close="index = -1"
+      @close="onClosed"
     >
       <template v-if="index > -1">
         <img :alt="gallery[index].alt" :src="photo(gallery[index].id, 1800, gallery[index].h * 1.5, 85)">
@@ -53,6 +53,7 @@
   import { onBeforeUnmount, onMounted, ref } from 'vue'
   import AppIcon from '@/components/AppIcon.vue'
   import { gallery, photo } from '@/content'
+  import { lockScroll } from '@/smooth-scroll'
 
   const dialogEl = ref(null)
   const index = ref(-1)
@@ -60,9 +61,15 @@
   function openAt (i) {
     index.value = i
     dialogEl.value.showModal()
+    lockScroll(true)
   }
   function close () {
     dialogEl.value.close()
+  }
+  // Fires for every way of closing: button, backdrop click or Esc
+  function onClosed () {
+    index.value = -1
+    lockScroll(false)
   }
   function step (dir) {
     index.value = (index.value + dir + gallery.length) % gallery.length

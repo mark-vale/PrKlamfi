@@ -80,6 +80,8 @@ html {
   html { scroll-behavior: auto; }
 }
 
+html.scroll-locked { overflow: hidden; }
+
 body {
   margin: 0;
   background: var(--bg);
